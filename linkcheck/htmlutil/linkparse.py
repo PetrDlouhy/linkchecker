@@ -86,7 +86,7 @@ WmlTags = {
 refresh_re = re.compile(r"(?i)^\d+;\s*url=(?P<url>.+)$")
 _quoted_pat = r"('[^']+'|\"[^\"]+\"|[^\)\s]+)"
 css_url_re = re.compile(r"url\(\s*(?P<url>%s)\s*\)" % _quoted_pat)
-swf_url_re = re.compile("(?i)%s" % urlutil.safe_url_pattern)
+swf_url_re = re.compile(b"(?i)%s" % (urlutil.safe_url_pattern).encode())
 c_comment_re = re.compile(r"/\*.*?\*/", re.DOTALL)
 
 

@@ -103,7 +103,7 @@ def parse_swf (url_data):
     linkfinder = linkparse.swf_url_re.finditer
     for mo in linkfinder(url_data.get_content()):
         url = mo.group()
-        url_data.add_url(url)
+        url_data.add_url(url.decode())
 
 
 def parse_wml (url_data):
