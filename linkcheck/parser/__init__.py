@@ -78,7 +78,7 @@ def parse_text (url_data):
     for line in url_data.get_content().splitlines():
         lineno += 1
         line = line.strip()
-        if not line or line.startswith(b'#'):
+        if not line or line.startswith('#'):
             continue
         url_data.add_url(line, line=lineno)
 
@@ -92,7 +92,7 @@ def parse_css (url_data):
     strip_comments = linkparse.strip_c_comments
     for line in strip_comments(url_data.get_content()).splitlines():
         lineno += 1
-        for mo in linkfinder(line.decode()):
+        for mo in linkfinder(line):
             column = mo.start("url")
             url = strformat.unquote(mo.group("url").strip())
             url_data.add_url(url, line=lineno, column=column)

@@ -95,7 +95,7 @@ class MarkdownCheck(_ContentPlugin):
 
     def check(self, url_data):
         """Extracts urls from the file."""
-        content = url_data.get_content().decode()
+        content = url_data.get_content()
         self._check_by_re(url_data, content)
         self._check_inline_links(url_data, content)
 

@@ -638,7 +638,7 @@ class UrlBase (object):
         while data:
             if buf.tell() + len(data) > self.aggregate.config["maxfilesizedownload"]:
                 raise LinkCheckerError(_("File size too large"))
-            buf.write(data)
+            buf.write(data.decode())
             data = self.read_content_chunk()
         return buf.getvalue()
 
