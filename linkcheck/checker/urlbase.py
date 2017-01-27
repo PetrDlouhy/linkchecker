@@ -36,11 +36,7 @@ import time
 import errno
 import socket
 import select
-try:
-    from cStringIO import BytesIO
-except ImportError:
-    # Python 3
-    from io import BytesIO
+from io import StringIO
 from builtins import str as str_text
 from six import python_2_unicode_compatible
 
@@ -637,7 +633,7 @@ class UrlBase (object):
 
     def read_content(self):
         """Return data for this URL. Can be overridden in subclasses."""
-        buf = BytesIO()
+        buf = StringIO()
         data = self.read_content_chunk()
         while data:
             if buf.tell() + len(data) > self.aggregate.config["maxfilesizedownload"]:
