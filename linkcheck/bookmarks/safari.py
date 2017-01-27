@@ -80,10 +80,13 @@ def get_plist_data_from_string (data):
     """Parse plist data for a string. Tries biplist, falling back to
     plistlib."""
     if has_biplist:
-        return biplist.readPlistFromString(data)
+        return biplist.readPlistFromString(data.encode())
     # fall back to normal plistlist
     try:
-        return plistlib.readPlistFromString(data)
+        try:  # Python 3
+            return plistlib.loads(data.encode())
+        except AttributeError:
+            return plistlib.readPlistFromString(data.encode())
     except Exception:
         # not parseable (eg. not well-formed, or binary)
         return {}
